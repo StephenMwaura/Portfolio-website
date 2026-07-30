@@ -1,0 +1,26 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Projects — Your Name{% endblock %}
+
+{% block content %}
+<section class="section section--page-head wrap">
+    <p class="eyebrow">Index</p>
+    <h1 class="page-title">Projects</h1>
+</section>
+
+<section class="section wrap">
+    <div class="card-grid">
+        {% for project in projects %}
+        <a href="{% url 'portfolio:project_detail' project.pk %}" class="card">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-image">
+            {% endif %}
+            <h3 class="card-title">{{ project.title }}</h3>
+            <p class="card-summary">{{ project.summary }}</p>
+        </a>
+        {% empty %}
+        <p class="empty-state">No projects yet — add some in the admin.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

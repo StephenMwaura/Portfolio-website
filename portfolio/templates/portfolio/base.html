@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Stephen Mwaura — Portfolio{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+</head>
+<body>
+    
+
+    <header class="site-header">
+        <nav class="nav wrap">
+            <a href="{% url 'portfolio:home' %}" class="brand">Stephen Mwaura</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="mainNav">
+                <li><a href="{% url 'portfolio:home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}is-active{% endif %}">Home</a></li>
+                <li><a href="{% url 'portfolio:about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}is-active{% endif %}">About</a></li>
+                <li><a href="{% url 'portfolio:project_list' %}" class="nav-link {% if request.resolver_match.url_name == 'project_list' or request.resolver_match.url_name == 'project_detail' %}is-active{% endif %}">Projects</a></li>
+                <li><a href="{% url 'portfolio:contact' %}" class="nav-link nav-cta">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {% if messages %}
+    <div class="messages wrap">
+        {% for message in messages %}
+        <div class="message">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer wrap">
+        <span class="footer-stamp"></span>
+        <span class="footer-year">&copy; {% now "Y" %}</span>
+    </footer>
+
+    <script src="{% static 'portfolio/js/main.js' %}"></script>
+</body>
+</html>

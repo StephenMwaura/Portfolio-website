@@ -1,0 +1,56 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Your Name — Portfolio{% endblock %}
+
+{% block content %}
+<section class="hero wrap">
+    <div class="hero-copy">
+        <p class="eyebrow">Software Engineer and a Data Scientist</p>
+        <h1 class="hero-title">I build things that<br>hold up under load.</h1>
+        <p class="hero-sub">
+            Full-stack developer working with Python, Django, and JavaScript.
+        </p>
+        <div class="hero-actions">
+            <a href="{% url 'portfolio:project_list' %}" class="btn btn--primary">View projects</a>
+            <a href="{% url 'portfolio:contact' %}" class="btn btn--ghost">Get in touch</a>
+        </div>
+    </div>
+
+    <div class="title-block">
+        <div class="title-block-row title-block-row--main">
+            <span class="tb-label"></span>
+            <span class="tb-value">Stephen Mwaura</span>
+        </div>
+        <div class="title-block-grid">
+            <div class="tb-cell">
+                <span class="tb-label">ROLE</span>
+                <span class="tb-value">Backend Developer and Data Scientist</span>
+            </div>
+            <div class="tb-cell">
+                <span class="tb-label">STACK</span>
+                <span class="tb-value">Python , Javascript, Django , Data Analysis, Data Visualization and Data Cleaning</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section wrap">
+    <div class="section-heading">
+        <h2>Featured work</h2>
+        <a href="{% url 'portfolio:project_list' %}" class="section-link">All projects &rarr;</a>
+    </div>
+    <div class="card-grid">
+        {% for project in my_projects %}
+        <a href="{% url 'portfolio:project_detail' project.pk %}" class="card">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-image">
+            {% endif %}
+            <h3 class="card-title">{{ project.title }}</h3>
+            <p class="card-summary">{{ project.summary }}</p>
+        </a>
+        {% empty %}
+        <p class="empty-state">No featured projects yet — add some in the admin.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

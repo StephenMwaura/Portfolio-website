@@ -1,0 +1,24 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}About — Your Name{% endblock %}
+
+{% block content %}
+<section class="section wrap">
+    {% if profile %}
+    <div class="about-grid">
+        {% if profile.profile_image %}
+        <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="profile-image">
+        {% endif %}
+        <div class="about-copy">
+            <p class="eyebrow">About</p>
+            <h1 class="page-title">{{ profile.name }}</h1>
+            <div class="about-bio">{{ profile.bio|linebreaks }}</div>
+            <h2 class="about-subhead">Education</h2>
+            <div class="about-education">{{ profile.education|linebreaks }}</div>
+        </div>
+    </div>
+    {% else %}
+    <p class="empty-state">Profile not set up yet — add one in the admin.</p>
+    {% endif %}
+</section>
+{% endblock %}

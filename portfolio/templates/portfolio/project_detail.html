@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}{{ project.title }} — Your Name{% endblock %}
+
+{% block content %}
+<section class="section section--page-head wrap">
+    <a href="{% url 'portfolio:project_list' %}" class="back-link">&larr; All projects</a>
+    <p class="eyebrow"></p>
+    <h1 class="page-title">{{ project.title }}</h1>
+</section>
+
+<section class="section project-detail-grid wrap">
+    <div class="project-body">
+        {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="detail-image">
+        {% endif %}
+        <div class="project-description">{{ project.description|linebreaks }}</div>
+    </div>
+
+    <aside class="project-meta">
+        <div class="meta-block">
+            <span class="tb-label">Tech stack</span>
+            <p>{{ project.tech_stack }}</p>
+        </div>
+        {% if project.project_url %}
+        <a href="{{ project.project_url }}" target="_blank" rel="noopener" class="btn btn--primary btn--block">Live demo &rarr;</a>
+        {% endif %}
+        {% if project.github_url %}
+        <a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn--ghost btn--block">Source code &rarr;</a>
+        {% endif %}
+    </aside>
+</section>
+{% endblock %}
