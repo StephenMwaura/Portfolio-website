@@ -387,3 +387,20 @@ img { max-width: 100%; display: block; }
     .nav-links li { width: 100%; }
     .nav-links .nav-link { display: block; padding: 16px; border-top: 1px solid var(--line); }
 }
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.footer-links a:hover { color: var(--cyan); }
+
+.contact-direct {
+    color: var(--text-on-ink-dim);
+    margin-bottom: 24px;
+}
+
+.contact-direct a { color: var(--cyan); }
